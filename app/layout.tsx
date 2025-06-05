@@ -4,7 +4,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar"
 import AppSidebar from "./(routes)/(root)/components/AppSidebar/AppSidebar";
-import { Navbar } from "@/components/Shared";
+import { Footer, Navbar } from "@/components/Shared";
 
 const spaceGrotesk = Space_Grotesk ({
   variable: "--font-space-grotesk",
@@ -33,6 +33,8 @@ export default function RootLayout({
                     <Navbar />
             
                      <main className="flex-1"> {children}</main> 
+
+                     <Footer />
               </div>  
             </SidebarProvider>     
       </body>
