@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server"
 import { Header } from "./components";
+import prisma from "@/lib/prisma";
 
 
 export default async function TeacherPage() {
@@ -9,6 +10,8 @@ export default async function TeacherPage() {
         return <p>Not signed in</p>
     }
     
+
+
   return (
     <div>
       <Header />
