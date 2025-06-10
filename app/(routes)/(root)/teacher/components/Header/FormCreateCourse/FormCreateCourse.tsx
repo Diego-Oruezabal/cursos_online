@@ -2,6 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { z } from "zod"
+import axios from "axios";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -14,7 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { formSchema } from "./FormCreateCourse.form"
-import { z } from "zod"
+
 
 
 
@@ -29,8 +31,17 @@ export function FormCreateCourse() {
   })
  
  
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values)
+
+    try {
+      const res = await axios.post("/api/course", values);
+
+      console.log(res);
+
+    } catch (error) {
+      console.error(error);
+    }
   }
   
   return (

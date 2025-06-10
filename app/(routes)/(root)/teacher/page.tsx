@@ -10,7 +10,13 @@ export default async function TeacherPage() {
         return <p>Not signed in</p>
     }
     
+const courses =await prisma.course.findMany({
+  where: {
+    userId: user.id,
+  }
+});
 
+console.log(courses);
 
   return (
     <div>

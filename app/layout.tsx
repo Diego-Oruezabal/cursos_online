@@ -25,7 +25,7 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} antialiased`}
+        className={`${spaceGrotesk.className} antialiased`}
       >
             <SidebarProvider>
               <AppSidebar />  
