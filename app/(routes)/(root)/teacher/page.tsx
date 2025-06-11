@@ -1,6 +1,9 @@
 import { currentUser } from "@clerk/nextjs/server"
-import { Header } from "./components";
+
 import prisma from "@/lib/prisma";
+
+import { Header } from "./components";
+import { ListCourses } from "./components/ListCoruses";
 
 
 export default async function TeacherPage() {
@@ -16,11 +19,11 @@ const courses =await prisma.course.findMany({
   }
 });
 
-console.log(courses);
-
   return (
     <div>
       <Header />
+
+      <ListCourses courses = {courses}/>
     </div>
   )
 }
