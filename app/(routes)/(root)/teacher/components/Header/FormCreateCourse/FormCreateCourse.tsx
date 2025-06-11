@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -15,13 +16,16 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { toast } from "sonner"
 import { formSchema } from "./FormCreateCourse.form"
 
 
 
 
 
+
 export function FormCreateCourse() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,15 +36,14 @@ export function FormCreateCourse() {
  
  
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values)
-
     try {
-      const res = await axios.post("/api/course", values);
-
-      console.log(res);
+      const res =await axios.post("/api/course", values);
+      toast("Curso creado correctamente 🎉");
+      router.push(`/teacher/${res.data.id}`);
 
     } catch (error) {
       console.error(error);
+      toast.error("Ha ocurrido un error 💥");
     }
   }
   
